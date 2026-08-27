@@ -1,814 +1,892 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mulae.Production — Video & Foto Dokumentasi Event</title>
-<meta name="description" content="Mulae.Production menangani videografi, fotografi, dan dokumentasi event korporat dari perencanaan hingga hasil akhir yang siap tayang.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@500;700;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#0B0F1A;
-    --ink-2:#131B2E;
-    --ink-3:#1B2540;
-    --ivory:#F6F3EC;
-    --ivory-2:#EDE8DC;
-    --brass:#C9A15A;
-    --brass-soft:#D9BC85;
-    --steel:#8892A6;
-    --rec:#E2483B;
-    --line-on-dark: rgba(246,243,236,0.14);
-    --line-on-light: rgba(11,15,26,0.14);
-    --display: 'Big Shoulders', sans-serif;
-    --body: 'Inter', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--ink);
-    color:var(--ivory);
-    font-family:var(--body);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  img,svg{display:block;max-width:100%;}
-  a{color:inherit;text-decoration:none;}
-  ul{margin:0;padding:0;list-style:none;}
-  section{position:relative;}
-  .wrap{
-    max-width:1180px;
-    margin:0 auto;
-    padding:0 32px;
-  }
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12.5px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--brass);
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:7px;height:7px;
-    background:var(--brass);
-    border-radius:1px;
-    flex:none;
-  }
-  h1,h2,h3{
-    font-family:var(--display);
-    font-weight:900;
-    text-transform:uppercase;
-    line-height:.92;
-    margin:0;
-    letter-spacing:.01em;
-  }
-  h2{ font-size:clamp(34px,5vw,58px); }
-  h3{ font-size:clamp(20px,2.4vw,26px); letter-spacing:.02em;}
-  p{ line-height:1.65; color:var(--steel); margin:0; }
-  .on-light p{ color:#4B4433; }
-  .on-light{ color:var(--ink); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  /* ---------- viewfinder signature corners ---------- */
-  .viewfinder{ position:relative; }
-  .viewfinder::before,
-  .viewfinder::after{
-    content:"";
-    position:absolute;
-    width:18px;height:18px;
-    border-color:var(--brass);
-    border-style:solid;
-    border-width:0;
-    opacity:.85;
-    transition:width .35s ease, height .35s ease, opacity .35s ease;
-    pointer-events:none;
-  }
-  .viewfinder::before{
-    top:-1px; left:-1px;
-    border-top-width:2px; border-left-width:2px;
-  }
-  .viewfinder::after{
-    bottom:-1px; right:-1px;
-    border-bottom-width:2px; border-right-width:2px;
-  }
-  .viewfinder:hover::before,
-  .viewfinder:hover::after{
-    width:26px;height:26px;
-    opacity:1;
-  }
+    <title>Mulae.event — Event Documentation</title>
 
-  /* ---------- buttons ---------- */
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:14px 26px;
-    font-family:var(--mono);
-    font-size:13px;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    border:1px solid var(--line-on-dark);
-    transition:border-color .25s ease, background .25s ease, color .25s ease, transform .2s ease;
-  }
-  .btn-solid{
-    background:var(--brass);
-    color:var(--ink);
-    border-color:var(--brass);
-  }
-  .btn-solid:hover{ background:var(--brass-soft); transform:translateY(-2px); }
-  .btn-ghost:hover{ border-color:var(--brass); color:var(--brass); transform:translateY(-2px); }
-  .on-light .btn-ghost{ border-color:var(--line-on-light); }
+    <meta name="description"
+        content="Mulae.event — Video & Photography Documentation for Events, Weddings, Graduation and Corporate Events.">
 
-  /* ---------- nav ---------- */
-  header{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    background:rgba(11,15,26,.82);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line-on-dark);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 32px;
-    max-width:1180px; margin:0 auto;
-  }
-  .logo{
-    font-family:var(--display);
-    font-weight:900;
-    font-size:20px;
-    letter-spacing:.03em;
-    text-transform:uppercase;
-    display:flex; align-items:center; gap:10px;
-  }
-  .rec-dot{
-    width:8px;height:8px;border-radius:50%;
-    background:var(--rec);
-    box-shadow:0 0 0 0 rgba(226,72,59,.6);
-    animation:pulse 1.6s infinite;
-    flex:none;
-  }
-  @keyframes pulse{
-    0%{ box-shadow:0 0 0 0 rgba(226,72,59,.55); }
-    70%{ box-shadow:0 0 0 8px rgba(226,72,59,0); }
-    100%{ box-shadow:0 0 0 0 rgba(226,72,59,0); }
-  }
-  .nav-links{
-    display:flex; align-items:center; gap:34px;
-    font-family:var(--mono); font-size:12.5px;
-    letter-spacing:.06em; text-transform:uppercase;
-  }
-  .nav-links a{ color:var(--ivory); opacity:.75; transition:opacity .2s; }
-  .nav-links a:hover{ opacity:1; color:var(--brass); }
-  .nav-cta{ display:flex; align-items:center; gap:22px; }
-  .burger{ display:none; background:none; border:0; cursor:pointer; color:var(--ivory); }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  @media (max-width:860px){
-    .nav-links{
-      position:fixed; inset:64px 0 0 0; background:var(--ink);
-      flex-direction:column; justify-content:center; gap:30px;
-      font-size:16px;
-      transform:translateY(-110%); transition:transform .35s ease;
-    }
-    .nav-links.open{ transform:translateY(0); }
-    .burger{ display:block; }
-    .nav-cta .btn-solid{ display:none; }
-  }
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
 
-  /* ---------- hero ---------- */
-  .hero{
-    padding:168px 0 90px;
-    background:
-      radial-gradient(ellipse at 15% 0%, rgba(201,161,90,.14), transparent 55%),
-      radial-gradient(ellipse at 85% 20%, rgba(27,37,64,.9), transparent 60%),
-      var(--ink);
-    border-bottom:1px solid var(--line-on-dark);
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:60px;
-    align-items:end;
-  }
-  .hero h1{
-    font-size:clamp(46px,7.4vw,96px);
-    margin:20px 0 26px;
-  }
-  .hero h1 span{ color:var(--brass); }
-  .hero-sub{
-    max-width:460px;
-    margin-bottom:34px;
-  }
-  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
-  .hero-panel{
-    border:1px solid var(--line-on-dark);
-    padding:26px;
-    background:rgba(19,27,46,.5);
-  }
-  .timecode{
-    font-family:var(--mono);
-    font-size:clamp(28px,4vw,40px);
-    letter-spacing:.06em;
-    color:var(--ivory);
-  }
-  .timecode-label{
-    font-family:var(--mono);
-    font-size:11.5px;
-    color:var(--steel);
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    margin-top:8px;
-  }
-  .hero-panel-row{
-    display:flex; justify-content:space-between; align-items:flex-end;
-    border-top:1px solid var(--line-on-dark);
-    margin-top:22px; padding-top:18px;
-  }
-  @media (max-width:860px){
-    .hero-grid{ grid-template-columns:1fr; }
-    .hero{ padding-top:130px; }
-  }
+    <style>
 
-  /* ---------- stats strip ---------- */
-  .stats{
-    background:var(--ink-2);
-    border-bottom:1px solid var(--line-on-dark);
-    padding:34px 0;
-  }
-  .stats-row{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-  }
-  .stat b{
-    display:block;
-    font-family:var(--mono);
-    font-size:clamp(24px,3vw,34px);
-    color:var(--brass-soft);
-    font-weight:500;
-  }
-  .stat span{
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--steel);
-  }
-  @media (max-width:700px){
-    .stats-row{ grid-template-columns:repeat(2,1fr); row-gap:26px; }
-  }
+        :root {
+            --black: #080808;
+            --white: #f5f5f3;
+            --gray: #a4a4a4;
+            --dark-gray: #171717;
+        }
 
-  /* ---------- section heads ---------- */
-  .section{ padding:110px 0; }
-  .section-head{
-    display:flex; justify-content:space-between; align-items:flex-end;
-    gap:30px; margin-bottom:56px; flex-wrap:wrap;
-  }
-  .section-head p{ max-width:380px; }
-  .on-light .eyebrow{ color:#8A5E1F; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* ---------- services ---------- */
-  .services{ background:var(--ivory); }
-  .service-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:1px;
-    background:var(--line-on-light);
-    border:1px solid var(--line-on-light);
-  }
-  .service-card{
-    background:var(--ivory);
-    padding:34px 30px 30px;
-    position:relative;
-  }
-  .service-num{
-    font-family:var(--mono);
-    color:#B08D57;
-    font-size:12.5px;
-    margin-bottom:22px;
-    display:block;
-  }
-  .service-card h3{ margin-bottom:14px; }
-  .service-card p{ font-size:14.5px; margin-bottom:18px; }
-  .service-tags{ display:flex; flex-wrap:wrap; gap:8px; }
-  .service-tags span{
-    font-family:var(--mono);
-    font-size:10.5px;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    padding:5px 9px;
-    border:1px solid var(--line-on-light);
-    color:#6B6250;
-  }
-  @media (max-width:860px){ .service-grid{ grid-template-columns:1fr; } }
+        html {
+            scroll-behavior: smooth;
+        }
 
-  /* ---------- showreel ---------- */
-  .showreel-wrap{ padding:0 0 110px; background:var(--ivory); }
-  .showreel{
-    position:relative;
-    aspect-ratio:16/9;
-    background:
-      linear-gradient(120deg, #17203A, #0B0F1A 60%);
-    overflow:hidden;
-    cursor:pointer;
-  }
-  .showreel::before{
-    content:"";
-    position:absolute; inset:0;
-    background-image:
-      repeating-linear-gradient(0deg, rgba(246,243,236,.035) 0 1px, transparent 1px 3px);
-  }
-  .showreel-poster{
-    position:absolute; inset:0;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:18px;
-    color:var(--ivory);
-  }
-  .play-ring{
-    width:78px;height:78px;border-radius:50%;
-    border:1.5px solid var(--brass);
-    display:flex;align-items:center;justify-content:center;
-    transition:transform .3s ease, background .3s ease;
-  }
-  .showreel:hover .play-ring{ transform:scale(1.08); background:rgba(201,161,90,.12); }
-  .play-ring svg{ margin-left:4px; }
-  .showreel-cap{
-    font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--brass-soft);
-  }
-  .showreel iframe{ width:100%; height:100%; border:0; position:absolute; inset:0; }
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: "DM Sans", sans-serif;
+            overflow-x: hidden;
+        }
 
-  /* ---------- portfolio ---------- */
-  .portfolio{ background:var(--ink); }
-  .folio-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:22px;
-  }
-  .folio-card{
-    aspect-ratio:3/4;
-    position:relative;
-    padding:18px;
-    display:flex; flex-direction:column; justify-content:flex-end;
-    border:1px solid var(--line-on-dark);
-    overflow:hidden;
-  }
-  .folio-card .bg{
-    position:absolute; inset:0; z-index:0;
-  }
-  .folio-card .content{ position:relative; z-index:2; }
-  .folio-card .cat{
-    font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--brass-soft); margin-bottom:8px; display:block;
-  }
-  .folio-card h3{ font-size:19px; }
-  .folio-card::before{
-    content:""; position:absolute; inset:0; z-index:1;
-    background:linear-gradient(0deg, rgba(11,15,26,.92) 10%, rgba(11,15,26,.25) 60%, rgba(11,15,26,.05));
-  }
-  .f1 .bg{ background:linear-gradient(155deg,#2A3A63,#0B0F1A 70%); }
-  .f2 .bg{ background:linear-gradient(155deg,#3B2A1E,#0B0F1A 70%); }
-  .f3 .bg{ background:linear-gradient(155deg,#1E3B33,#0B0F1A 70%); }
-  .f4 .bg{ background:linear-gradient(155deg,#3B1E2C,#0B0F1A 70%); }
-  .folio-play{
-    position:absolute; top:16px; right:16px; z-index:2;
-    width:34px;height:34px;border-radius:50%;
-    border:1px solid var(--line-on-dark);
-    display:flex; align-items:center; justify-content:center;
-    opacity:0; transform:translateY(-6px);
-    transition:opacity .3s ease, transform .3s ease, border-color .3s ease;
-  }
-  .folio-card:hover .folio-play{ opacity:1; transform:translateY(0); border-color:var(--brass); }
-  @media (max-width:960px){ .folio-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .folio-grid{ grid-template-columns:1fr; } }
+        /* =========================
+           NAVBAR
+        ========================= */
 
-  /* ---------- process ---------- */
-  .process{ background:var(--ivory); }
-  .filmstrip{
-    display:flex; flex-direction:column; gap:0;
-    border-top:1px solid var(--line-on-light);
-  }
-  .frame-row{
-    display:grid;
-    grid-template-columns:110px 1fr 2fr;
-    align-items:center;
-    gap:24px;
-    padding:26px 0;
-    border-bottom:1px solid var(--line-on-light);
-  }
-  .frame-row .sprocket{
-    display:flex; gap:6px;
-    font-family:var(--mono); color:#B08D57; font-size:13px;
-  }
-  .frame-row .sprocket i{
-    width:6px;height:6px;border-radius:50%;
-    background:#D8CDB0; display:inline-block;
-  }
-  .frame-tc{ font-family:var(--mono); font-size:13.5px; color:#8A5E1F; }
-  .frame-row h3{ margin-bottom:6px; font-size:19px; }
-  .frame-row p{ font-size:14px; max-width:520px; }
-  @media (max-width:760px){
-    .frame-row{ grid-template-columns:1fr; gap:8px; }
-  }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 5vw;
 
-  /* ---------- testimonials ---------- */
-  .testimonials{ background:var(--ink-2); border-top:1px solid var(--line-on-dark); border-bottom:1px solid var(--line-on-dark);}
-  .quote-grid{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
-    background:var(--line-on-dark); border:1px solid var(--line-on-dark);
-  }
-  .quote-card{ background:var(--ink-2); padding:36px 34px; }
-  .quote-mark{ font-family:var(--display); font-size:44px; color:var(--brass); line-height:1; }
-  .quote-card p.quote{ color:var(--ivory); font-size:16.5px; margin:16px 0 22px; line-height:1.6; }
-  .quote-name{ font-family:var(--mono); font-size:12px; letter-spacing:.05em; text-transform:uppercase; color:var(--steel); }
-  .quote-name b{ color:var(--ivory); display:block; font-family:var(--body); font-weight:600; font-size:14.5px; text-transform:none; letter-spacing:0; margin-bottom:2px;}
-  @media (max-width:760px){ .quote-grid{ grid-template-columns:1fr; } }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-  /* ---------- CTA ---------- */
-  .cta{
-    background:linear-gradient(120deg,#C9A15A,#A9803F);
-    color:var(--ink);
-    padding:90px 0;
-    text-align:center;
-  }
-  .cta h2{ color:var(--ink); margin-bottom:18px; }
-  .cta p{ color:#3A2E17; max-width:480px; margin:0 auto 32px; }
-  .cta .btn-solid{ background:var(--ink); color:var(--ivory); border-color:var(--ink); }
-  .cta .btn-solid:hover{ background:#000; }
-  .cta .btn-ghost{ border-color:rgba(11,15,26,.35); }
-  .cta .btn-ghost:hover{ color:var(--ink); border-color:var(--ink); }
-  .cta-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+            z-index: 100;
 
-  /* ---------- footer ---------- */
-  footer{ background:var(--ink); padding:64px 0 30px; }
-  .footer-grid{
-    display:grid;
-    grid-template-columns:1.4fr 1fr 1fr 1fr;
-    gap:40px;
-    padding-bottom:50px;
-    border-bottom:1px solid var(--line-on-dark);
-  }
-  .footer-grid h4{
-    font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--steel); margin:0 0 16px;
-  }
-  .footer-grid li{ margin-bottom:10px; font-size:14.5px; }
-  .footer-grid a:hover{ color:var(--brass); }
-  .footer-bottom{
-    display:flex; justify-content:space-between; align-items:center;
-    padding-top:24px; flex-wrap:wrap; gap:14px;
-    font-family:var(--mono); font-size:11.5px; color:var(--steel);
-    letter-spacing:.04em;
-  }
-  @media (max-width:760px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+            mix-blend-mode: difference;
+        }
 
-  /* ---------- reveal ---------- */
-  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-  @media (prefers-reduced-motion: reduce){
-    .reveal{ opacity:1; transform:none; transition:none; }
-    .rec-dot{ animation:none; }
-    html{ scroll-behavior:auto; }
-  }
-</style>
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+
+            position: relative;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 7vw 5vw;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,.85),
+                    rgba(0,0,0,.1)
+                ),
+                url("assets/hero.jpg");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .eyebrow {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ccc;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 10vw, 150px);
+            line-height: .88;
+            letter-spacing: -7px;
+            font-weight: 500;
+        }
+
+        .hero h1 em {
+            font-family: "Playfair Display", serif;
+            font-weight: 400;
+        }
+
+        .hero-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            margin-top: 50px;
+
+            max-width: 1000px;
+        }
+
+        .hero-description {
+            max-width: 400px;
+            color: #c0c0c0;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .scroll {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           GENERAL SECTION
+        ========================= */
+
+        section {
+            padding: 140px 5vw;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            margin-bottom: 70px;
+        }
+
+        .section-number {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .section-title {
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 400;
+            letter-spacing: -3px;
+        }
+
+        .section-title em {
+            font-family: "Playfair Display", serif;
+        }
+
+        /* =========================
+           WORK
+        ========================= */
+
+        .works {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .work {
+            position: relative;
+            overflow: hidden;
+            background: var(--dark-gray);
+        }
+
+        .work:nth-child(1) {
+            grid-column: span 7;
+        }
+
+        .work:nth-child(2) {
+            grid-column: span 5;
+        }
+
+        .work:nth-child(3) {
+            grid-column: span 5;
+        }
+
+        .work:nth-child(4) {
+            grid-column: span 7;
+        }
+
+        .work img {
+            width: 100%;
+            height: 100%;
+            min-height: 480px;
+
+            object-fit: cover;
+
+            display: block;
+
+            filter: grayscale(100%);
+
+            transition:
+                transform .7s ease,
+                filter .7s ease;
+        }
+
+        .work:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .work-info {
+            position: absolute;
+            left: 25px;
+            right: 25px;
+            bottom: 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            opacity: 0;
+
+            transition: opacity .4s ease;
+        }
+
+        .work:hover .work-info {
+            opacity: 1;
+        }
+
+        .work-info h3 {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .work-info p {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ddd;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 10vw;
+        }
+
+        .about-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .about-text {
+            font-size: clamp(28px, 4vw, 55px);
+            line-height: 1.15;
+            letter-spacing: -2px;
+        }
+
+        .about-text em {
+            font-family: "Playfair Display", serif;
+            font-weight: 400;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .services {
+            border-top: 1px solid #292929;
+        }
+
+        .service {
+            display: grid;
+            grid-template-columns: 80px 1fr 1fr;
+
+            padding: 35px 0;
+
+            border-bottom: 1px solid #292929;
+
+            transition: padding .4s ease;
+        }
+
+        .service:hover {
+            padding-left: 20px;
+            padding-right: 20px;
+            background: #111;
+        }
+
+        .service-number {
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .service h3 {
+            font-size: 27px;
+            font-weight: 400;
+        }
+
+        .service p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* =========================
+           STATEMENT
+        ========================= */
+
+        .statement {
+            min-height: 80vh;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.65),
+                    rgba(0,0,0,.8)
+                ),
+                url("assets/statement.jpg");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .statement-inner {
+            max-width: 1100px;
+        }
+
+        .statement h2 {
+            font-size: clamp(50px, 8vw, 120px);
+            line-height: .95;
+            letter-spacing: -5px;
+            font-weight: 400;
+        }
+
+        .statement h2 em {
+            font-family: "Playfair Display", serif;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            text-align: center;
+            padding-top: 180px;
+            padding-bottom: 180px;
+        }
+
+        .contact h2 {
+            font-size: clamp(50px, 9vw, 130px);
+            letter-spacing: -6px;
+            line-height: .9;
+            font-weight: 400;
+        }
+
+        .contact h2 em {
+            font-family: "Playfair Display", serif;
+        }
+
+        .contact p {
+            max-width: 450px;
+            margin: 35px auto;
+
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .contact-button {
+            display: inline-block;
+
+            padding: 17px 35px;
+
+            border: 1px solid #555;
+
+            color: white;
+            text-decoration: none;
+
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            transition: .3s;
+        }
+
+        .contact-button:hover {
+            background: white;
+            color: black;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px 5vw;
+
+            border-top: 1px solid #252525;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #777;
+
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 35px 20px;
+            }
+
+            .hero h1 {
+                letter-spacing: -4px;
+            }
+
+            .hero-bottom {
+                display: block;
+            }
+
+            .scroll {
+                margin-top: 30px;
+            }
+
+            section {
+                padding: 90px 20px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .works {
+                display: block;
+            }
+
+            .work {
+                margin-bottom: 15px;
+            }
+
+            .work img {
+                min-height: 400px;
+            }
+
+            .work-info {
+                opacity: 1;
+            }
+
+            .about {
+                display: block;
+            }
+
+            .about-text {
+                margin-top: 40px;
+            }
+
+            .service {
+                grid-template-columns: 45px 1fr;
+                gap: 10px;
+            }
+
+            .service p {
+                grid-column: 2;
+                margin-top: 10px;
+            }
+
+            .statement h2 {
+                letter-spacing: -3px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+    </style>
 </head>
+
+
 <body>
 
-<header>
-  <nav class="nav">
-    <a href="#top" class="logo"><span class="rec-dot"></span>Mulae<span style="color:var(--brass)">.</span>Production</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#layanan">Layanan</a></li>
-      <li><a href="#portofolio">Portofolio</a></li>
-      <li><a href="#proses">Proses</a></li>
-      <li><a href="#testimoni">Testimoni</a></li>
-      <li><a href="#kontak">Kontak</a></li>
-    </ul>
-    <div class="nav-cta">
-      <a href="#kontak" class="btn btn-solid">Konsultasi Gratis</a>
-      <button class="burger" id="burger" aria-label="Buka menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6"/></svg>
-      </button>
-    </div>
-  </nav>
-</header>
+    <!-- NAVIGATION -->
 
-<main id="top">
+    <nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow">Videografi &amp; Fotografi Dokumentasi Event</div>
-        <h1>Setiap Event<br>Berjalan <span>Sekali.</span><br>Kami Merekamnya<br>Selamanya.</h1>
-        <p class="hero-sub">Mulae.Production menangani dokumentasi konferensi, product launch, hingga acara korporat perusahaan Anda — dari perencanaan shot list sampai file akhir siap tayang.</p>
-        <div class="hero-actions">
-          <a href="#portofolio" class="btn btn-ghost">Lihat Portofolio</a>
-          <a href="#kontak" class="btn btn-solid">Diskusikan Event Anda</a>
+        <div class="logo">
+            Mulae<span>.event</span>
         </div>
-      </div>
-      <div class="hero-panel viewfinder">
-        <div class="timecode" id="timecode">00:00:00:00</div>
-        <div class="timecode-label">Durasi rata-rata produksi hingga delivery</div>
-        <div class="hero-panel-row">
-          <div>
-            <div class="timecode" style="font-size:20px;">48<span style="color:var(--steel);font-size:14px;"> jam</span></div>
-            <div class="timecode-label">Same-day highlight</div>
-          </div>
-          <div>
-            <div class="timecode" style="font-size:20px;">4K</div>
-            <div class="timecode-label">Resolusi standar</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- STATS -->
-  <section class="stats">
-    <div class="wrap stats-row">
-      <div class="stat"><b>250+</b><span>Event ditangani</span></div>
-      <div class="stat"><b>8 Thn</b><span>Pengalaman produksi</span></div>
-      <div class="stat"><b>40+</b><span>Klien korporat</span></div>
-      <div class="stat"><b>98%</b><span>Klien booking ulang</span></div>
-    </div>
-  </section>
-
-  <!-- LAYANAN -->
-  <section class="section services" id="layanan">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <div class="eyebrow">00 — Layanan</div>
-          <h2>Yang Kami Kerjakan</h2>
-        </div>
-        <p class="on-light">Tim kamera, editor, dan produser bekerja sebagai satu unit di setiap event — bukan vendor lepas yang digabung mendadak.</p>
-      </div>
-      <div class="service-grid reveal">
-        <div class="service-card viewfinder">
-          <span class="service-num">00:01</span>
-          <h3>Videografi Event</h3>
-          <p>Liputan multi-kamera untuk seminar, konferensi, dan seremoni korporat, lengkap dengan audio line-in dari panggung.</p>
-          <div class="service-tags"><span>Multi-kamera</span><span>Audio Line-in</span><span>Highlight Video</span></div>
-        </div>
-        <div class="service-card viewfinder">
-          <span class="service-num">00:02</span>
-          <h3>Fotografi Dokumentasi</h3>
-          <p>Foto candid dan formal — sesi networking, sambutan direksi, hingga detail venue — diserahkan dalam hitungan hari.</p>
-          <div class="service-tags"><span>Candid</span><span>Formal Portrait</span><span>Same-day Preview</span></div>
-        </div>
-        <div class="service-card viewfinder">
-          <span class="service-num">00:03</span>
-          <h3>Same-Day Edit</h3>
-          <p>Video ringkasan 2–3 menit yang tayang di penutupan acara — untuk momen yang butuh dampak instan di hari yang sama.</p>
-          <div class="service-tags"><span>Edit Kilat</span><span>Tayang di Venue</span></div>
-        </div>
-        <div class="service-card viewfinder">
-          <span class="service-num">00:04</span>
-          <h3>Live Streaming</h3>
-          <p>Siaran langsung ke YouTube, Zoom, atau platform internal perusahaan, dengan switching multi-kamera dan grafis on-screen.</p>
-          <div class="service-tags"><span>Multi-platform</span><span>Grafis On-screen</span></div>
-        </div>
-        <div class="service-card viewfinder">
-          <span class="service-num">00:05</span>
-          <h3>Drone &amp; Aerial</h3>
-          <p>Pengambilan gambar udara untuk venue outdoor, groundbreaking, atau company gathering skala besar.</p>
-          <div class="service-tags"><span>Izin Terbang</span><span>4K Aerial</span></div>
-        </div>
-        <div class="service-card viewfinder">
-          <span class="service-num">00:06</span>
-          <h3>Paket After-Movie</h3>
-          <p>Video rekap 3–5 menit untuk laporan tahunan, media sosial, atau materi pitching internal perusahaan.</p>
-          <div class="service-tags"><span>Color Grading</span><span>Music Licensing</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SHOWREEL -->
-  <div class="showreel-wrap">
-    <div class="wrap reveal">
-      <div class="eyebrow" style="color:#8A5E1F;margin-bottom:20px;">Showreel</div>
-      <!--
-        Cara memasang video:
-        1. Upload video ke YouTube sebagai "Unlisted" (Tidak Publik) agar tidak muncul di pencarian tapi tetap bisa di-embed.
-        2. Ganti nilai data-yt di bawah ini dengan ID video YouTube Anda (bagian setelah "v=" pada link video).
-      -->
-      <div class="showreel" id="showreel" data-yt="https://www.youtube.com/watch?v=WQFmmXWJL6s">
-        <div class="showreel-poster">
-          <div class="play-ring">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="var(--ivory)"/></svg>
-          </div>
-          <div class="showreel-cap">Putar Showreel 2026</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PORTFOLIO -->
-  <section class="section portfolio" id="portofolio">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <div class="eyebrow">01 — Portofolio</div>
-          <h2>Event yang Kami Abadikan</h2>
-        </div>
-        <p>Pilihan proyek dari berbagai skala klien, dari konferensi 2 hari hingga peluncuran produk satu malam.</p>
-      </div>
-      <div class="folio-grid reveal">
-        <div class="folio-card f1">
-          <div class="bg"></div>
-          <div class="folio-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="var(--ivory)"/></svg></div>
-          <div class="content"><span class="cat">Konferensi</span><h3>Annual Leadership Summit</h3></div>
-        </div>
-        <div class="folio-card f2">
-          <div class="bg"></div>
-          <div class="folio-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="var(--ivory)"/></svg></div>
-          <div class="content"><span class="cat">Product Launch</span><h3>Peluncuran Lini Produk Baru</h3></div>
-        </div>
-        <div class="folio-card f3">
-          <div class="bg"></div>
-          <div class="folio-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="var(--ivory)"/></svg></div>
-          <div class="content"><span class="cat">Company Gathering</span><h3>Family Day &amp; Town Hall</h3></div>
-        </div>
-        <div class="folio-card f4">
-          <div class="bg"></div>
-          <div class="folio-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="var(--ivory)"/></svg></div>
-          <div class="content"><span class="cat">Award Night</span><h3>Malam Penghargaan Karyawan</h3></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROSES -->
-  <section class="section process" id="proses">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <div class="eyebrow">02 — Proses</div>
-          <h2>Dari Brief ke Delivery</h2>
-        </div>
-        <p class="on-light">Lima tahap yang sama kami jalankan di setiap event, besar maupun kecil.</p>
-      </div>
-      <div class="filmstrip reveal">
-        <div class="frame-row">
-          <div class="sprocket"><i></i><i></i><i></i></div>
-          <div class="frame-tc">00:01</div>
-          <div><h3 class="on-light">Konsultasi</h3><p class="on-light">Diskusi kebutuhan, jumlah sesi, dan gaya dokumentasi yang sesuai dengan citra acara Anda.</p></div>
-        </div>
-        <div class="frame-row">
-          <div class="sprocket"><i></i><i></i><i></i></div>
-          <div class="frame-tc">00:02</div>
-          <div><h3 class="on-light">Perencanaan &amp; Riset Lokasi</h3><p class="on-light">Survei venue, susun shot list, dan tentukan titik kamera terbaik sebelum hari-H.</p></div>
-        </div>
-        <div class="frame-row">
-          <div class="sprocket"><i></i><i></i><i></i></div>
-          <div class="frame-tc">00:03</div>
-          <div><h3 class="on-light">Produksi (Hari-H)</h3><p class="on-light">Tim kamera dan fotografer bekerja sesuai run-down acara, dari registrasi hingga penutupan.</p></div>
-        </div>
-        <div class="frame-row">
-          <div class="sprocket"><i></i><i></i><i></i></div>
-          <div class="frame-tc">00:04</div>
-          <div><h3 class="on-light">Editing &amp; Review</h3><p class="on-light">Seleksi foto dan color grading video, dengan sesi revisi bersama tim Anda.</p></div>
-        </div>
-        <div class="frame-row">
-          <div class="sprocket"><i></i><i></i><i></i></div>
-          <div class="frame-tc">00:05</div>
-          <div><h3 class="on-light">Delivery</h3><p class="on-light">File akhir dikirim dalam format siap pakai untuk media sosial, laporan tahunan, atau arsip internal.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONI -->
-  <section class="testimonials" id="testimoni">
-    <div class="wrap section">
-      <div class="section-head reveal">
-        <div>
-          <div class="eyebrow">03 — Testimoni</div>
-          <h2>Kata Klien Kami</h2>
-        </div>
-      </div>
-      <div class="quote-grid reveal">
-        <div class="quote-card">
-          <div class="quote-mark">&rdquo;</div>
-          <p class="quote">Tim datang tepat waktu, paham run-down acara tanpa perlu diarahkan berulang, dan hasil video sampai ke kami lebih cepat dari yang dijanjikan.</p>
-          <div class="quote-name"><b>Dian Kusuma</b>Event Manager, Perusahaan Manufaktur</div>
-        </div>
-        <div class="quote-card">
-          <div class="quote-mark">&rdquo;</div>
-          <p class="quote">Same-day edit yang ditayangkan di sesi penutupan jadi kejutan tersendiri untuk seluruh peserta konferensi kami tahun ini.</p>
-          <div class="quote-name"><b>Rangga Pratama</b>Head of Corporate Comms</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta" id="kontak">
-    <div class="wrap">
-      <div class="eyebrow" style="justify-content:center;color:#3A2E17;">Siap Memulai</div>
-      <h2>Punya Event Mendatang?</h2>
-      <p>Ceritakan tanggal dan skala acara Anda, tim kami akan kirimkan proposal dan penawaran paket dalam 1x24 jam.</p>
-      <div class="cta-actions">
-        <a href="https://wa.me/6281234567890?text=Halo%20Mulae.Production%2C%20saya%20ingin%20menanyakan%20jasa%20dokumentasi%20event." class="btn btn-solid" target="_blank" rel="noopener">Chat via WhatsApp</a>
-        <a href="mailto:hello@mulae.production" class="btn btn-ghost">hello@mulae.production</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="logo" style="margin-bottom:14px;"><span class="rec-dot"></span>Mulae<span style="color:var(--brass)">.</span>Production</div>
-        <p style="max-width:280px;font-size:14px;">Studio produksi video &amp; foto untuk dokumentasi event korporat — dari konferensi hingga malam penghargaan.</p>
-      </div>
-      <div>
-        <h4>Navigasi</h4>
-        <ul>
-          <li><a href="#layanan">Layanan</a></li>
-          <li><a href="#portofolio">Portofolio</a></li>
-          <li><a href="#proses">Proses</a></li>
-          <li><a href="#testimoni">Testimoni</a></li>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-      </div>
-      <div>
-        <h4>Kontak</h4>
-        <ul>
-          <li><a href="mailto:hello@mulae.production">hello@mulae.production</a></li>
-          <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">+62 812-3456-7890</a></li>
-          <li>Pasuruan, Jawa Timur</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Sosial</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">YouTube</a></li>
-          <li><a href="#">LinkedIn</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Mulae.Production. Seluruh hak cipta dilindungi.</span>
-      <span>ROLL // A · SCENE 01 · TAKE 01</span>
-    </div>
-  </div>
-</footer>
 
-<script>
-  // Mobile nav toggle
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    </nav>
 
-  // Timecode ticker (24fps look), respects reduced motion
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const tcEl = document.getElementById('timecode');
-  if (tcEl && !reduceMotion) {
-    let h=0,m=0,s=0,f=0;
-    setInterval(() => {
-      f++; if(f>=24){f=0; s++;}
-      if(s>=60){s=0; m++;}
-      if(m>=60){m=0; h++;}
-      const pad = n => String(n).padStart(2,'0');
-      tcEl.textContent = `${pad(h)}:${pad(m)}:${pad(s)}:${pad(f)}`;
-    }, 1000/24);
-  }
 
-  // Showreel: click poster to load YouTube embed
-  const showreel = document.getElementById('showreel');
-  if (showreel) {
-    showreel.addEventListener('click', function handler() {
-      const id = showreel.getAttribute('data-yt');
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-      iframe.allowFullscreen = true;
-      showreel.innerHTML = '';
-      showreel.appendChild(iframe);
-      showreel.removeEventListener('click', handler);
-    }, { once:true });
-  }
+    <!-- HERO -->
 
-  // Scroll reveal
-  if (!reduceMotion) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
-  }
-</script>
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                Event Documentation — Video & Photography
+            </div>
+
+            <h1>
+                Moments<br>
+                <em>Worth Remembering.</em>
+            </h1>
+
+            <div class="hero-bottom">
+
+                <p class="hero-description">
+                    Kami mengabadikan momen, suasana, dan cerita
+                    dari setiap event melalui visual yang jujur,
+                    cinematic, dan penuh karakter.
+                </p>
+
+                <div class="scroll">
+                    Scroll to explore ↓
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- WORK -->
+
+    <section id="work">
+
+        <div class="section-header">
+
+            <div class="section-number">
+                01 / Selected Works
+            </div>
+
+            <h2 class="section-title">
+                Our <em>Work.</em>
+            </h2>
+
+        </div>
+
+
+        <div class="works">
+
+            <article class="work">
+
+                <img src="assets/work-01.jpg" alt="Event Documentation">
+
+                <div class="work-info">
+
+                    <div>
+                        <h3>Annual Gathering 2026</h3>
+                        <p>Event Documentation</p>
+                    </div>
+
+                    <p>01</p>
+
+                </div>
+
+            </article>
+
+
+            <article class="work">
+
+                <img src="assets/work-02.jpg" alt="Wedding Documentation">
+
+                <div class="work-info">
+
+                    <div>
+                        <h3>Wedding Celebration</h3>
+                        <p>Photo & Video</p>
+                    </div>
+
+                    <p>02</p>
+
+                </div>
+
+            </article>
+
+
+            <article class="work">
+
+                <img src="assets/work-03.jpg" alt="Graduation Documentation">
+
+                <div class="work-info">
+
+                    <div>
+                        <h3>Graduation Day</h3>
+                        <p>Photography</p>
+                    </div>
+
+                    <p>03</p>
+
+                </div>
+
+            </article>
+
+
+            <article class="work">
+
+                <img src="assets/work-04.jpg" alt="Corporate Event">
+
+                <div class="work-info">
+
+                    <div>
+                        <h3>Corporate Event</h3>
+                        <p>Aftermovie</p>
+                    </div>
+
+                    <p>04</p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="section-header">
+
+            <div class="section-number">
+                02 / About
+            </div>
+
+        </div>
+
+
+        <div class="about">
+
+            <div class="about-label">
+                Mulae.event
+            </div>
+
+            <div class="about-text">
+
+                We don't just
+                <em>document</em>
+                events.
+
+                We capture the
+                atmosphere,
+                emotions, and little
+                moments that make
+                them meaningful.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+
+    <section id="services">
+
+        <div class="section-header">
+
+            <div class="section-number">
+                03 / Services
+            </div>
+
+            <h2 class="section-title">
+                What We <em>Do.</em>
+            </h2>
+
+        </div>
+
+
+        <div class="services">
+
+            <div class="service">
+
+                <div class="service-number">01</div>
+
+                <h3>Event Documentation</h3>
+
+                <p>
+                    Dokumentasi lengkap untuk berbagai jenis
+                    event dengan pendekatan visual yang natural
+                    dan cinematic.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-number">02</div>
+
+                <h3>Event Photography</h3>
+
+                <p>
+                    Mengabadikan detail, ekspresi, dan momen
+                    penting dalam bentuk foto yang clean
+                    dan timeless.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-number">03</div>
+
+                <h3>Event Videography</h3>
+
+                <p>
+                    Video dokumentasi dengan storytelling,
+                    camera movement, dan editing yang
+                    menyesuaikan karakter event.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-number">04</div>
+
+                <h3>Highlight & Aftermovie</h3>
+
+                <p>
+                    Merangkum energi dan cerita sebuah acara
+                    menjadi video yang memorable.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <div class="service-number">05</div>
+
+                <h3>Same Day Edit</h3>
+
+                <p>
+                    Video highlight yang diproduksi dan
+                    ditayangkan di hari yang sama.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATEMENT -->
+
+    <section class="statement">
+
+        <div class="statement-inner">
+
+            <h2>
+                Your event happens once.
+                <br>
+                Make the memory
+                <em>last.</em>
+            </h2>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact" class="contact">
+
+        <div class="section-number">
+            04 / Contact
+        </div>
+
+        <h2>
+            Let's create<br>
+            something <em>meaningful.</em>
+        </h2>
+
+        <p>
+            Punya event yang ingin didokumentasikan?
+            Ceritakan konsep dan kebutuhanmu kepada kami.
+            Mari kita buat visual yang bisa kamu ingat
+            bahkan bertahun-tahun setelah acara selesai.
+        </p>
+
+        <a
+            href="https://wa.me/6281234567890"
+            class="contact-button"
+            target="_blank"
+        >
+            Start a Conversation
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div>
+            © 2026 Mulae.event
+        </div>
+
+        <div>
+            Video & Photography Documentation
+        </div>
+
+        <div>
+            Indonesia
+        </div>
+
+    </footer>
+
 
 </body>
 </html>
